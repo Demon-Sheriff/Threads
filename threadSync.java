@@ -2,9 +2,16 @@ public class threadSync {
 
     static int count = 0;
 
-    static synchronized void increment(){/* This is the critical section. */
-        count++; 
+    // create a custom lock
+    static final Object lock = new Object();
+
+    // block level synchronisation.
+    static void increment(){
+        synchronized(lock){
+            count++;
+        }
     }
+
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Starting threads...");
 
@@ -19,7 +26,7 @@ public class threadSync {
             for (int i = 0; i < 100000; i++) {
                 increment();
             }
-            
+
             System.out.println("Thread two finished");
         });
 
