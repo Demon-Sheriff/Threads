@@ -1,23 +1,25 @@
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class threadSync {
 
-    static AtomicInteger count = new AtomicInteger(0);
+    static int count = 0;
 
+    static synchronized void increment(){/* This is the critical section. */
+        count++; 
+    }
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Starting threads...");
 
         Thread tempOne = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                count.incrementAndGet();
+                increment();
             }
             System.out.println("Thread one finished");
         });
 
         Thread tempTwo = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                count.incrementAndGet();
+                increment();
             }
+            
             System.out.println("Thread two finished");
         });
 
