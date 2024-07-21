@@ -1,32 +1,33 @@
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class threadSync {
 
-    static int count = 0;
-    public static void main(String[] args) throws InterruptedException{
-        
-        Thread one = new Thread(() -> {
-            for(int i=0; i<100000; i++){
-                System.out.println("one is running");
-                ++count; // non atomic operation.
-                System.out.println( "count is :" + count );
+    static AtomicInteger count = new AtomicInteger(0);
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Starting threads...");
+
+        Thread tempOne = new Thread(() -> {
+            for (int i = 0; i < 100000; i++) {
+                count.incrementAndGet();
             }
+            System.out.println("Thread one finished");
         });
 
-        Thread two = new Thread(() -> {
-            for(int i=0; i<100000; i++){
-
-                System.out.println("two is running");
-                ++count;
-                System.out.println( "count is :" + count );
+        Thread tempTwo = new Thread(() -> {
+            for (int i = 0; i < 100000; i++) {
+                count.incrementAndGet();
             }
+            System.out.println("Thread two finished");
         });
 
-        one.start();
-        two.start();
+        tempOne.start();
+        tempTwo.start();
 
-        one.join();
-        two.join();
+        tempOne.join();
+        tempTwo.join();
 
-        System.out.println("final count is : " + count);
+        System.out.println("Both threads finished");
+        System.out.println("Final count is : " + count);
     }
 }
-

@@ -1,4 +1,3 @@
-import javax.swing.DebugGraphics;
 
 public class daemonandUser {
     public static void main(String[] args) {
