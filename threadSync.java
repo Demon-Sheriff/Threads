@@ -6,7 +6,7 @@ public class threadSync {
         Thread one = new Thread(() -> {
             for(int i=0; i<100000; i++){
                 System.out.println("one is running");
-                count++;
+                ++count; // non atomic operation.
                 System.out.println( "count is :" + count );
             }
         });
@@ -15,7 +15,7 @@ public class threadSync {
             for(int i=0; i<100000; i++){
 
                 System.out.println("two is running");
-                count++;
+                ++count;
                 System.out.println( "count is :" + count );
             }
         });
