@@ -39,19 +39,16 @@ public class SemaphoreExample {
     public static void main(String[] args) {
         SharedResource sharedResource = new SharedResource();
 
-        // Create and start threads for incrementing
         Thread incrementThread1 = new Thread(sharedResource::increment);
         Thread incrementThread2 = new Thread(sharedResource::increment);
         incrementThread1.start();
         incrementThread2.start();
 
-        // Create and start threads for decrementing
         Thread decrementThread1 = new Thread(sharedResource::decrement);
         Thread decrementThread2 = new Thread(sharedResource::decrement);
         decrementThread1.start();
         decrementThread2.start();
 
-        // Wait for threads to finish
         try {
             incrementThread1.join();
             incrementThread2.join();
