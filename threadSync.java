@@ -3,7 +3,7 @@ public class threadSync {
     static int count = 0;
 
     // create a custom lock
-    static final Object lock = new Object();
+    static Object lock = new Object();
 
     // block level synchronisation.
     static void increment(){
