@@ -10,6 +10,8 @@ public class extendThread {
         one.join(); // make sure that one is done executing.
         two.join(); // make sure that two is done executing.
 
+        // check the output
+
         System.out.println("all threads done executing ? or not !? ");
 
     }
