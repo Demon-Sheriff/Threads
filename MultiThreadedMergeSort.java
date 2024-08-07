@@ -22,6 +22,7 @@ public class MultiThreadedMergeSort {
             }
         });
 
+        // check
 
         // start the threads
         left.start();
