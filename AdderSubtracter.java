@@ -1,4 +1,6 @@
 public class AdderSubtracter {
+
+    public static Object lock = new Object();
     public static void main(String[] args) throws InterruptedException {
         
         Value val = new Value(0);
@@ -15,6 +17,8 @@ public class AdderSubtracter {
 
         System.out.println(val.getVal());
 
+
+        
     }
 }
 
